@@ -43,7 +43,7 @@
 ;; Emacs Display Window Configuration
 (defvar t-list '(inhibit-startup-message visible-bell global-linum-mode 
                  debug-on-error make-backup-files backup-by-copying 
-                 delete-old-versions version-control))
+                 delete-old-versions version-control vc-follow-symlinks))
 (defvar nil-list '(save-interprogram-paste-before-kill tool-bar-mode scroll-bar-mode 
                    menu-bar-mode blink-cursor-mode))
 (dolist (o t-list) (set o t))
