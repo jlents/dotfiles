@@ -6,6 +6,8 @@
 (package-initialize)
 
 
+;(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+
 (defvar my-packages '(smart-mode-line smart-mode-line-powerline-theme idomenu smex 
                       sml-modeline ido-ubiquitous better-defaults company
                       auto-complete ac-nrepl auto-indent-mode clj-refactor cljdoc
@@ -25,9 +27,10 @@
 (setq explicit-bash-args (list "--login" "-i"))
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 
-;(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
+
+
+
 ;(setq load-path (cons "~./emacs.d" load-path))
-(load "~/.emacs.d/nrepl.el")
 (load "~/.emacs.d/bash-completion.el")
 (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
 (add-hook 'after-init-hook 'global-company-mode)
