@@ -106,16 +106,22 @@
                                    (global-set-key [(shift meta x)] 'smex-major-mode-commands)
                                    (smex-major-mode-commands)))
 
+;; Function to delete whitespace when saving
+(defun jsl-delete-ws-save ()
+  (interactive)
+  (progn
+    (delete-trailing-whitespace)
+    (save-buffer)))
+
 ;; General Convenience Remappings
 (global-set-key "\C-x\C-k" 'kill-this-buffer)  ; Bypasses the C-x k prompt.
 (global-set-key "\C-c;" 'comment-region)
 (global-set-key "\C-c'" 'uncomment-region)
 (global-set-key "\M-o" 'other-window)
-(global-set-key "\C-x\C-s" (lambda ()
-                                   (interactive)
-                                   (progn
-                                        (delete-trailing-whitespace)
-                                        (save-buffer))))
+(global-set-key "\C-x\C-s" 'jsl-delete-ws-save)
+
+;; Alias to allow to type 'y' or 'n' instead of 'yes' and 'no'
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Set fill width to 79 (default was 70).
 (setq-default fill-column 79)
