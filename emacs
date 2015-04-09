@@ -1,3 +1,4 @@
+;;;; -*- mode: Emacs-Lisp; eldoc-mode:t -*-
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -8,7 +9,7 @@
 
 ;(add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 
-(defvar my-packages '(smart-mode-line smart-mode-line-powerline-theme idomenu smex 
+(defvar my-packages '(smart-mode-line smart-mode-line-powerline-theme idomenu smex
                       sml-modeline ido-ubiquitous better-defaults company
                       auto-complete ac-nrepl auto-indent-mode clj-refactor cljdoc
                       clojure-mode cider paredit rainbow-delimiters rainbow-mode popup
@@ -27,11 +28,8 @@
 (setq explicit-bash-args (list "--login" "-i"))
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 
-
-
-
-;(setq load-path (cons "~./emacs.d" load-path))
-(load "~/.emacs.d/bash-completion.el")
+(setq load-path (cons "~./emacs.d/el-files" load-path))
+;(load "~/.emacs.d/bash-completion.el")
 (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -44,10 +42,11 @@
 (setq auto-mode-alist (cons '("\\.htm$" . html-helper-mode) auto-mode-alist))
 
 ;; Emacs Display Window Configuration
-(defvar t-list '(inhibit-startup-message visible-bell global-linum-mode 
-                 debug-on-error make-backup-files backup-by-copying 
-                 delete-old-versions version-control vc-follow-symlinks))
-(defvar nil-list '(save-interprogram-paste-before-kill tool-bar-mode scroll-bar-mode 
+(defvar t-list '(inhibit-startup-message visible-bell global-linum-mode
+                 debug-on-error make-backup-files backup-by-copying
+                 delete-old-versions version-control vc-follow-symlinks js3-auto-indent-p
+                 js3-enter-indents-newline js3-indent-on-enter-key))
+(defvar nil-list '(save-interprogram-paste-before-kill tool-bar-mode scroll-bar-mode
                    menu-bar-mode blink-cursor-mode))
 (dolist (o t-list) (set o t))
 (dolist (o nil-list) (set o nil))
@@ -86,7 +85,7 @@
 (setq ac-quick-help-delay 0.5)
 (ac-config-default)
 
-;; Note to self: Learn more about ido features/options 
+;; Note to self: Learn more about ido features/options
 (require 'ido)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -112,6 +111,11 @@
 (global-set-key "\C-c;" 'comment-region)
 (global-set-key "\C-c'" 'uncomment-region)
 (global-set-key "\M-o" 'other-window)
+(global-set-key "\C-x\C-s" (lambda ()
+                                   (interactive)
+                                   (progn
+                                        (delete-trailing-whitespace)
+                                        (save-buffer))))
 
 ;; Set fill width to 79 (default was 70).
 (setq-default fill-column 79)
@@ -130,7 +134,7 @@
 (setq read-file-name-completion-ignore-case t)
 
 ;; Clojure Configuration
-(load "~/.emacs.d/clojure-stuff.el")
+;(load "~/.emacs.d/clojure-stuff.el")
 
 ;(defrun my-init ()
   ;; My code will go here
@@ -138,3 +142,29 @@
 
 ;(add-to-list 'after-init-hook 'my-init)
 
+(put 'downcase-region 'disabled nil)
+
+
+;; Function for loading every .el file in a given directory
+(defun load-directory (directory)
+  "Load recursively all `.el' files in DIRECTORY."
+  (dolist (element (directory-files-and-attributes directory nil nil nil))
+    (let* ((path (car element))
+           (fullpath (concat directory "/" path))
+           (isdir (car (cdr element)))
+           (ignore-dir (or (string= path ".") (string= path ".."))))
+      (cond
+       ((and (eq isdir t) (not ignore-dir))
+        (load-directory fullpath))
+       ((and (eq isdir nil) (string= (substring path -3) ".el"))
+        (load (file-name-sans-extension fullpath)))))))
+
+;; Loading all el files
+(load-directory "~/.emacs.d/el-files")
+
+(defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer
+          (delq (current-buffer)
+                (remove-if-not 'buffer-file-name (buffer-list)))))
