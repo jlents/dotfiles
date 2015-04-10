@@ -28,7 +28,8 @@
 (setq explicit-bash-args (list "--login" "-i"))
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 
-(setq load-path (cons "~./emacs.d/el-files" load-path))
+;(setq load-path (cons "~./emacs.d/el-files" load-path))
+
 ;(load "~/.emacs.d/bash-completion.el")
 (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -166,7 +167,7 @@
         (load (file-name-sans-extension fullpath)))))))
 
 ;; Loading all el files
-(load-directory "~/.emacs.d/el-files")
+;(load-directory "~/.emacs.d/el-files")
 
 (defun kill-other-buffers ()
     "Kill all other buffers."
