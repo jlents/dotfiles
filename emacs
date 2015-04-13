@@ -28,7 +28,7 @@
 (setq explicit-bash-args (list "--login" "-i"))
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 
-;(setq load-path (cons "~./emacs.d/el-files" load-path))
+
 
 ;(load "~/.emacs.d/bash-completion.el")
 (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
@@ -140,8 +140,6 @@
 (setq read-buffer-completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
 
-;; Clojure Configuration
-;(load "~/.emacs.d/clojure-stuff.el")
 
 ;(defrun my-init ()
   ;; My code will go here
@@ -167,7 +165,8 @@
         (load (file-name-sans-extension fullpath)))))))
 
 ;; Loading all el files
-;(load-directory "~/.emacs.d/el-files")
+(setq load-path (cons "~./emacs.d/el-files" load-path))
+(load-directory "~/.emacs.d/el-files")
 
 (defun kill-other-buffers ()
     "Kill all other buffers."
