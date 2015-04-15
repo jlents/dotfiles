@@ -59,8 +59,12 @@
 (set-default-font "Inconsolata-14")
 
 ;; Setting theme
+;(load-theme 'light-soap t)
+;(load-theme 'jazz t)
+;(load-theme 'boron t)
+(load-theme 'warm-night t)
 ;(load-theme 'cyberpunk t)
-(load-theme 'light-soap t)
+;(load-theme 'darcula t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
