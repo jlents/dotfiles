@@ -1,9 +1,0 @@
-#!/bin/bash
-
-
-# Variables
-cd ~
-TEMP_DIR=~/${USER}
-cp ~/.emacs ${TEMP_DIR}
-cp -R ~/emacs.d ${TEMP_DIR}
-tar -zcvf ${USER}.tar.gz ${TEMP_DIR}
