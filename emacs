@@ -29,18 +29,14 @@
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 
 
-
-;(load "~/.emacs.d/bash-completion.el")
 (add-hook 'shell-dynamic-complete-functions 'bash-completion-dynamic-complete)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Adding Custom Theme Location
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+;;; MODES
 
 ;; Linking File Extenstions To Modes
 (setq auto-mode-alist (cons '("README" . text-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.htm$" . html-helper-mode) auto-mode-alist))
 
 ;; Emacs Display Window Configuration
 (defvar t-list '(inhibit-startup-message visible-bell global-linum-mode
@@ -57,6 +53,9 @@
 
 ;; Setting Font
 (set-default-font "Inconsolata-14")
+
+;; Adding Custom Theme Location
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; Setting theme
 ;(load-theme 'light-soap t)
