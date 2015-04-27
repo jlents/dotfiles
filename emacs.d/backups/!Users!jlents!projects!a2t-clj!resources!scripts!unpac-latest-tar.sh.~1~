@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CODE_DROPS=/systems/systes.sct/code-drops
+TARFILES=${CODE_DROPS}/tarfiles
+MEDIA=/media

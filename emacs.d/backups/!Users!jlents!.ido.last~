@@ -1,0 +1,231 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/jlents/projects/a2t-clj/resources/public/admin/" . "admin/")
+ ("/Users/jlents/projects/a2t-clj/resources/public/units/" . "unit-dashboard/")
+ ("/usr/local/opt/tomcat8/webapps/manager/" . "WEB-INF/")
+ ("/usr/local/opt/tomcat8/webapps/ROOT/" . "WEB-INF/")
+ ("/usr/local/opt/tomcat8/conf/" . "Catalina/")
+ ("/usr/local/opt/tomcat8/webapps/host-manager/" . "WEB-INF/")
+ ("/usr/local/opt/tomcat8/webapps/" . "manager/")
+ ("/usr/local/" . "opt/")
+ ("/usr/local/opt/tomcat8/" . "webapps/")
+ ("/usr/local/opt/" . "tomcat8/")
+ ("/usr/" . "local/")
+ ("/Users/jlents/projects/a2t-clj/.git/" . "hooks/")
+ ("/Users/jlents/projects/testing/.git/" . "hooks/")
+ ("/Users/jlents/projects/testing/" . ".git/")
+ ("/Users/jlents/projects/a2t-clj/resources/ingest-files/2002-10-14/" . "MFORCE/")
+ ("/Users/jlents/projects/a2t-clj/resources/ingest-files/" . "2002-10-14/")
+ ("/Users/jlents/projects/a2t-clj/test/a2t_clj/" . "etl/")
+ ("/Users/jlents/projects/a2t-clj/test/" . "a2t_clj/")
+ ("/Volumes/" . "initialize_user/")
+ ("/" . "Users/")
+ ("/Users/jlents/.emacs.d/" . "themes/")
+ ("/Users/jlents/projects/a2t-clj/resources/public/etl-admin/" . "detection/")
+ ("/Users/jlents/projects/a2t-clj/resources/public/" . "units/")
+ ("/Users/jlents/projects/a2t-clj/resources/" . "public/")
+ ("/Users/jlents/projects/aicig-notional/src/" . "aicig_notional/")
+ ("/Users/jlents/projects/aicig-notional/" . "src/")
+ ("/Users/jlents/projects/a2t-clj/src/a2t_clj/" . "etl/")
+ ("/Users/jlents/projects/a2t-clj/src/" . "a2t_clj/")
+ ("/Users/" . "jlents/")
+ ("/Users/jlents/projects/a2t-clj/" . "resources/")
+ ("/Users/jlents/projects/" . "a2t-clj/")
+ ("/Users/jlents/" . "projects/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/jlents/"
+ "/Users/jlents/projects/a2t-clj/resources/public/units/unit-dashboard/"
+ "/Users/jlents/projects/a2t-clj/resources/public/admin/admin/"
+ "/Users/jlents/projects/a2t-clj/resources/public/users/"
+ "/Users/jlents/projects/a2t-clj/resources/public/"
+ "/Users/jlents/projects/toastr-plus/"
+ "/Users/jlents/projects/a2t-clj/"
+ "/Users/jlents/projects/a2t-clj/src/a2t_clj/etl/"
+ "/Users/jlents/projects/a2t-clj/test/a2t_clj/etl/"
+ "/Users/jlents/backup/"
+ "/Users/jlents/projects/aicig-notional/src/aicig_notional/"
+ "/Users/jlents/projects/a2t-clj/src/a2t_clj/"
+ "/usr/local/opt/tomcat8/webapps/manager/WEB-INF/"
+ "/usr/local/opt/tomcat8/webapps/ROOT/WEB-INF/"
+ "/usr/local/opt/tomcat8/conf/"
+ "/Users/jlents/.emacs.d/themes/"
+ "/usr/local/opt/tomcat8/webapps/host-manager/WEB-INF/"
+ "/Users/jlents/scripts/"
+ "/Users/jlents/projects/testing/"
+ "/Users/jlents/testing-area/"
+ "/Users/"
+ "/Users/jlents/projects/a2t-clj/resources/scripts/"
+ "/Users/jlents/projects/a2t-clj/.git/hooks/"
+ "/Users/jlents/projects/testing/.git/hooks/"
+ "/Users/jlents/projects/a2t-clj/dev/"
+ "/usr/local/opt/jetty9/etc/"
+ "/usr/local/opt/jetty9/"
+ "/Users/jlents/projects/aicig-notional/"
+ "/Users/jlents/projects/a2t-clj/resources/ingest-files/2002-10-14/MFORCE/"
+ "/Volumes/initialize_user/"
+ "/Users/jlents/projects/aicig/"
+ "/Users/jlents/.emacs.d/el-files/"
+ "/Users/jlents/projects/a2t-clj/resources/public/etl-admin/detection/"
+ "/Users/jlents/.emacs.d/"
+ "/Users/jlents/projects/aicig-notional/dev/"
+ "/Users/jlents/dotfiles/"
+ "/Users/jlents/.lein/"
+ "/Users/jlents/emacs.bak/.emacs.d.bak/"
+ "/Users/jlents/emacs.bak/"
+ "/Users/jlents/notes/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ ".emacs"
+ "unit-dashboard.js"
+ "unit-dashboard.html"
+ "admin.js"
+ "user.js"
+ "app.js"
+ "testing.html"
+ "demo.html"
+ "toastr.js"
+ "etwas.js"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/jlents/projects/a2t-clj/" (21822 10253 0 0) "test/" "target/" "src/" "resources/" "README.org" "project.clj" "logs/" "dev/" ".lein-failures" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/jlents/projects/" (21816 61472 0 0) "wikidata/" "toastr-plus/" "testing/" "phaser/" "ircop/" "index.html" "dependencies/" "data-analysis/" "cled/" "aicig-notional/" "aicig-etl/" "aicig-data-analysis/" "aicig-data/" "aicig/" "a2t-clj/" ".DS_Store" "../" "./")
+
+ ("/Users/jlents/" (21822 11831 0 0) "wikidata/" "web.xml" "toastr.js" "temp.clj" "security/" "scripts/" "Public/" "projects/" "Pictures/" "notes/" "Music/" "Movies/" "Library/" "jertemp/" "installs/" "Downloads/" "dotfiles/" "Documents/" "Desktop/" "backup/" "Applications (Parallels)/" "Applications/" "Analyst-e2e-notes.docx" "2015-04-14T13.20.01.tar.gz" ".vimrc" ".viminfo" ".vim/" ".Trash/" ".ssh/" ".saves/" ".rnd" ".recentf" ".npm/" ".node-gyp/" ".mysql_history" ".mongorc.js" ".m2/" ".local/" ".lein/" ".ido.last" ".gradle/" ".gitconfig" ".emacs.d/" ".emacs-places" ".emacs" ".DS_Store" ".dbshell" ".cups/" ".config/" ".CFUserTextEncoding" ".cache/" ".bashrc" ".bash_profile" ".bash_history" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/units/unit-dashboard/" (21814 13921 0 0) "unit-dashboard.less" "unit-dashboard.js" "unit-dashboard.html" "unit-dashboard-spec.js" "training/" "timeline/" "personnel-upn-manager/" "personnel-mos/" "personnel-grade/" "personnel-discipline/" "personnel-details/" "personnel/" "leadership-modal/" "key-legend/" "gainloss/" "excel-export-button/" "equipment-upn-manager/" "equipment-detail/" "equipment/" "connectivity/" "comments/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/admin/admin/" (21795 64316 0 0) "admin.less" "admin.js" "admin.html" "admin-spec.js" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/admin/" (21795 63972 0 0) "restricted-field-editor/" "query-type-manager/" "query-preset/" "query-field-group-edit/" "query-builder-field-editor/" "manage-user/" "manage-roles/" "db-metadata/" "create-new-query/" "admin/" "add-user/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/users/" (21795 64318 0 0) "welcome/" "user.js" "account-requests/" "account/" "../" "./")
+
+ ("/Users/jlents/projects/toastr-plus/" (21816 54077 0 0) "toastr.less" "toastr.js" "toastr.css" "tests/" "testing.html" "README.md" "package.json" "nuget/" "karma.conf.js" "gulpfile.js" "demo.html" "CHANGELOG.md" "build/" "bin/" ".travis.yml" ".jshintrc" ".jscsrc" ".gitignore" ".gitattributes" ".git/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/" (21813 18128 0 0) "users/" "units/" "service/" "requestAccount.html" "query-builder/" "query/" "partial/" "package.json" "notifications/" "login.html" "issues/" "index.html" "img/" "gulpfile.js" "Gruntfile.js" "filter/" "etl-admin/" "directive/" "bower_components/" "bower.json" "app.less" "app.js" "admin/" ".bowerrc" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/units/unit-dashboard/timeline/" (21813 2430 0 0) "timeline.less" "timeline.js" "timeline-spec.js" "slider/" "modal/" "delete-confirm/" "../" "./")
+
+ ("/Users/jlents/dotfiles/" (21812 59356 0 0) "vimrc" "profiles.clj" "link-to-dotfiles.sh" "emacs.d/" "emacs" ".git/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/units/" (21795 63972 0 0) "units.js" "unit-line-item/" "unit-drop-down/" "unit-dashboard/" "org-chart/" "mi-force-tree/" "briefing-report-builder/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/" (21809 20998 0 0) "scripts/" "public/" "log4j.properties" "ingest-files-test/" "certs/" "briefingTemplate.pptx" "applicationContext.xml" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/test/a2t_clj/etl/" (21809 20909 0 0) "staging_validation_test.clj" "staging_transforms_test.clj" "extraction_test.clj" "etl_test.clj" "destination_transforms_test.clj" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/src/a2t_clj/etl/" (21809 19008 0 0) "staging_validation.clj" "staging_transforms.clj" "staging_schemas.clj" "extraction.clj" "etl_query.clj" "etl.clj" "destination_transforms.clj" "destination_schemas.clj" "data.clj" "../" "./")
+
+ ("/Users/jlents/backup/" (21809 5710 0 0) "extraction_test.clj" "extraction.clj" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/src/a2t_clj/" (21809 5153 0 0) "utility.clj" "security.clj" "response.clj" "query.clj" "notify.clj" "handler.clj" "filter.clj" "exception.clj" "excel_export.clj" "etl/" "entities.clj" "email.clj" "db.clj" "data_relationships.clj" "data.clj" "csk.clj" "crypto.clj" "config.clj" "briefing_report.clj" "access.clj" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/test/a2t_clj/" (21809 3396 0 0) "utility_test.clj" "response_test.clj" "handler_test.clj" "filter_test.clj" "etl/" "entities_test.clj" "email_test.clj" "db_test.clj" "data_test.clj" "data_relationships_test.clj" "crypto_test.clj" "access_test.clj" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/test/" (21795 63972 0 0) "a2t_clj/" "../" "./")
+
+ ("/Users/jlents/projects/aicig-notional/src/aicig_notional/" (21808 60220 0 0) "variations.clj" "utility.clj" "etl.clj" "db.clj" "data.clj" "crypto.clj" "core.clj" "config.clj" "../" "./")
+
+ ("/Users/jlents/.emacs.d/" (21808 60012 0 0) "themes/" "smex-items" "places" "eshell/" "elpa/" "el-files/" "backups/" "auto-save-list/" "ac-comphist.dat" ".gitignore" ".git/" ".emacs_bash" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/etl-admin/detection/" (21807 60591 0 0) "detection.js" "detection.html" "abort-reject-modal/" "../" "./")
+
+ ("/Users/jlents/.emacs.d/el-files/" (21806 29151 0 0) "web-mode.el" "web-beautify.el" "prolog.el" "js3.elc" "js3.el" "javascript-stuff.el" "clojure-stuff.el" "bash-completion.el" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/dev/" (21806 20218 0 0) "user.clj" "../" "./")
+
+ ("/Users/jlents/projects/testing/.git/hooks/" (21805 3260 0 0) "update.sample" "prepare-commit-msg.sample" "pre-rebase.sample" "pre-push.sample" "pre-push" "pre-commit.sample" "pre-commit" "pre-applypatch.sample" "post-update.sample" "commit-msg.sample" "applypatch-msg.sample" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/.git/hooks/" (21806 17083 0 0) "update.sample" "prepare-commit-msg.sample" "pre-rebase.sample" "pre-push.sample" "pre-push" "pre-commit.sample" "pre-commit" "pre-applypatch.sample" "post-update.sample" "commit-msg.sample" "applypatch-msg.sample" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/scripts/" (21806 20210 0 0) "unbundle-on-highside.sh" "list-file-types" "highside-setup.sh" "bundle-projects-for-highside.sh" "../" "./")
+
+ ("/Users/jlents/projects/testing/" (21799 45051 0 0) "something.txt" "a.txt" ".git/" "../" "./")
+
+ ("/Users/jlents/scripts/" (21805 4408 0 0) "unbundle-projects" "remove-trailing-whitespace" "propagate-hooks.sh" "mongo-scripts/" "list-file-types" "killp" "highside-setup" "grepp" "git-hooks/" "clsandrunprev" "cls" "bundle-projects" ".git/" "../" "./")
+
+ ("/usr/local/opt/tomcat8/webapps/host-manager/WEB-INF/" (21803 46610 0 0) "web.xml" "jsp/" "applicationContext.xml" "../" "./")
+
+ ("/Users/jlents/.emacs.d/themes/" (21807 53160 0 0) "zenburn-theme.el" "warm-night-theme.el" "jazz-theme.el" "darcula-theme.el" "boron-theme.el" "../" "./")
+
+ ("/usr/local/opt/tomcat8/webapps/ROOT/WEB-INF/" (21807 65462 0 0) "web.xml" "lib/" "classes/" "../" "./")
+
+ ("/Users/jlents/projects/aicig-notional/" (21807 52241 0 0) "test/" "target/" "src/" "resources/" "README.org" "project.clj" "Procfile" "LICENSE" "doc/" "dev/" ".lein-failures" ".gitignore" ".git/" "../" "./")
+
+ ("/usr/local/opt/tomcat8/webapps/manager/WEB-INF/" (21803 47210 0 0) "web.xml" "jsp/" "applicationContext.xml" "../" "./")
+
+ ("/usr/local/opt/tomcat8/webapps/manager/" (21776 8236 0 0) "xform.xsl" "WEB-INF/" "status.xsd" "META-INF/" "index.jsp" "images/" "../" "./")
+
+ ("/usr/local/opt/tomcat8/webapps/ROOT/" (21807 64201 0 0) "WEB-INF/" "META-INF/" "../" "./")
+
+ ("/usr/local/opt/tomcat8/webapps/" (21807 64201 0 0) "ROOT.war" "ROOT/" "manager/" "host-manager/" "examples/" "docs/" "../" "./")
+
+ ("/usr/local/opt/tomcat8/conf/" (21803 53780 0 0) "web.xml" "tomcat-users.xsd" "tomcat-users.xml" "server.xml.bak" "server.xml" "logging.properties" "log4j.properties" "context.xml" "catalina.properties" "catalina.policy" "Catalina/" "applicationContext.xml" ".DS_Store" "../" "./")
+
+ ("/usr/local/opt/" (21799 54539 0 0) "xz/" "tomcat8/" "spring/" "pkg-config/" "openssl/" "mongo/" "jetty9/" "git/" "emacs/" "automake/" ".DS_Store" "../" "./")
+
+ ("/usr/local/opt/tomcat8/conf/Catalina/" (21798 35946 0 0) "localhost/" ".DS_Store" "../" "./")
+
+ ("/usr/local/opt/tomcat8/webapps/host-manager/" (21776 8236 0 0) "WEB-INF/" "META-INF/" "manager.xml" "index.jsp" "images/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/src/" (21795 63972 0 0) "a2t_clj/" "../" "./")
+
+ ("/usr/local/opt/tomcat8/" (21798 35941 0 0) "work/" "webapps/" "temp/" "RUNNING.txt" "RELEASE-NOTES" "NOTICE" "logs/" "LICENSE" "lib/" "conf/" "bin/" "aicig-keystore.jks" ".DS_Store" "../" "./")
+
+ ("/Users/jlents/testing-area/" (21798 33675 0 0) "unpack-latest.sh" "media/" "etwas.txt" "code-drops/" "a2t-repositories/" ".#etwas.txt" "#etwas.txt#" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/.git/" (21795 62636 0 0) "refs/" "packed-refs" "ORIG_HEAD" "objects/" "logs/" "info/" "index" "hooks/" "HEAD" "FETCH_HEAD" "description" "config" "COMMIT_EDITMSG" "../" "./")
+
+ ("/Users/jlents/projects/testing/.git/" (21795 58190 0 0) "refs/" "objects/" "logs/" "info/" "index" "hooks/" "HEAD" "description" "config" "COMMIT_EDITMSG" "../" "./")
+
+ ("/Users/jlents/projects/aicig-notional/src/" (21778 41888 0 0) "aicig_notional/" "../" "./")
+
+ ("/usr/local/opt/jetty9/" (21794 36019 0 0) "webapps/" "VERSION.txt" "start.jar" "start.ini" "resources/" "README.TXT" "notice.html" "modules/" "logs/" "license-eplv10-aslv20.html" "lib/" "jetty.state" "jetty.pid" "etc/" "demo-base/" "certs/" "bin/" "../" "./")
+
+ ("/usr/local/opt/jetty9/etc/" (21794 32001 0 0) "webdefault.xml" "spnego.properties" "spnego.conf" "README.spnego" "protonego-npn.xml" "protonego-alpn.xml" "krb5.ini" "keystore.pkf" "keystore" "jolokia.xml" "jminix.xml" "jetty.xml" "jetty.conf" "jetty-xinetd.xml" "jetty-stats.xml" "jetty-started.xml" "jetty-ssl.xml" "jetty-spring.xml" "jetty-spdy.xml" "jetty-spdy-proxy.xml" "jetty-setuid.xml" "jetty-rewrite.xml" "jetty-requestlog.xml" "jetty-proxy.xml" "jetty-plus.xml" "jetty-monitor.xml" "jetty-lowresources.xml" "jetty-logging.xml" "jetty-jmx.xml" "jetty-jmx-remote.xml" "jetty-jaas.xml" "jetty-ipaccess.xml" "jetty-https.xml" "jetty-http.xml" "jetty-deploy.xml" "jetty-debug.xml" "jetty-cdi.xml" "jetty-annotations.xml" "jdbcRealm.properties" "jamon.xml" "home-base-warning.xml" "hawtio.xml" "example-quickstart.xml" "../" "./")
+
+ ("/usr/" (21577 194 0 0) "X11R6/" "X11/" "standalone/" "share/" "sbin/" "local/" "libexec/" "lib/" "include/" "bin/" "../" "./")
+
+ ("/usr/local/" (21740 28342 0 0) "var/" "SUPPORTERS.md" "share/" "README.md" "opt/" "mysql-5.6.19-osx10.7-x86_64/" "LICENSE.txt" "Library/" "lib/" "include/" "etc/" "CONTRIBUTING.md" "CODEOFCONDUCT.md" "Cellar/" "bin/" ".yardopts" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/ingest-files/2002-10-14/MFORCE/" (21789 33544 0 0) "mforce.txt" "../" "./")
+
+ ("/usr/local/opt/jetty9/modules/" (21758 61302 0 0) "xinetd.mod" "websocket.mod" "webapp.mod" "stats.mod" "ssl.mod" "spring.mod" "spdy.mod" "setuid.mod" "servlets.mod" "servlet.mod" "server.mod" "security.mod" "rewrite.mod" "resources.mod" "requestlog.mod" "quickstart.mod" "proxy.mod" "protonego.mod" "protonego-impl/" "plus.mod" "monitor.mod" "lowresources.mod" "logging.mod" "jvm.mod" "jstl.mod" "jsp.mod" "jsp-impl/" "jolokia.mod" "jndi.mod" "jmx.mod" "jmx-remote.mod" "jminix.mod" "jaspi.mod" "jamon.mod" "jaas.mod" "ipaccess.mod" "https.mod" "http.mod" "home-base-warning.mod" "hawtio.mod" "fcgi.mod" "ext.mod" "deploy.mod" "debug.mod" "continuation.mod" "client.mod" "cdi.mod" "annotations.mod" ".donotdelete" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/ingest-files/2002-10-14/" (21789 19961 0 0) "MFORCE/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/ingest-files/" (21789 19986 0 0) "2005-04-13/" "2002-10-14/" "../" "./")
+
+ ("/Volumes/initialize_user/" (21781 16113 0 0) "initialize_user.txt" "erik.txt" "../" "./")
+
+ ("/Volumes/" (21781 36537 0 0) "Macintosh HD/" "LOGS/" "initialize_user/" "../" "./")
+
+ ("/Users/jlents/projects/aicig/" (21769 23341 0 0) "usersAndRoles.js" "units.js" "ssl/" "slots.js" "README.md" "queryMetadata.js" "pocs.js" "personnel.js" "package.json" "npm-debug.log" "node_modules/" "mongoInstance.js" "mongoconfig.js" "main.js" "gainloss.js" "equipment.js" "dbUtil.js" "cryptography.js" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/jlents/projects/a2t-clj/resources/public/etl-admin/" (21778 36918 0 0) "etl-instance/" "detection/" "../" "./")
+
+ ("/Users/jlents/projects/aicig-notional/dev/" (21777 19227 0 0) "user.clj" "../" "./")
+
+ ("/Users/jlents/.lein/" (21776 7350 0 0) "self-installs/" "repl-history" "profiles.clj" "indices/" "../" "./")
+
+ ("/Users/" (21576 58694 0 0) "Shared/" "jlents/" ".localized" "../" "./")
+
+ ("/Users/jlents/emacs.bak/.emacs.d.bak/" (21770 47269 0 0) "web-mode/" "volatile-highlights.elc" "volatile-highlights.el" "vc-darcs.elc" "vc-darcs.el" "url/" "u_sml-mode" "u_ruby-mode" "u_haskell-mode" "u_haml" "u_ess" "u_darcsum" "tutorial/" "tramp" "themes/" "tetris-scores" "swank/" "subdirs.el" "stale/" "sml-mode-4.0/" "slime/" "scala-mode/" "saves/" "savehist" "ruby-mode/" "redo+.elc" "redo+.el" "rainbow-delimiters.elc" "rainbow-delimiters.el" "python-mode.elc" "python-mode.el" "psvn.elc" "psvn.el" "pretty-symbols.elc" "pretty-symbols.el" "paredit.elc" "paredit.el" "pabbrev.elc" "pabbrev.el" "multi-term.elc" "multi-term.el" "markdown-mode/" "malyon.elc" "malyon.el" "magit/" "lusty-explorer.elc" "lusty-explorer.el" "lojban.el" "lojban-mode.el" "js2-mode/" "htmlize.elc" "htmlize.el" "helm/" "haskell-mode/" "haml/" "groovy-mode.elc" "groovy-mode.el" "gnuplot-mode.elc" "gnuplot-mode.el" "git-modes/" "flymake-jshint.elc" "flymake-jshint.el" "flymake-cursor.elc" "flymake-cursor.el" "ess/" "eshell/" "ensime/" "emms/" "emacs-w3m/" "elscreen-w3m-0.2.2/" "elscreen-1.4.6/" "elpa/" "elib-1.0/" "darcsum/" "cl-lib.elc" "cl-lib.el" "cider-eldoc.elc" "cider-eldoc.el" "build/" "bookmarks" "auto-save-list/" "agda2-mode/" "ac-nrepl/" "ac-comphist.dat" ".diary" "../" "./")
+
+ ("/Users/jlents/notes/" (21769 24295 0 0) "umongo-install-instructions.txt" "ubart_isntallation_instructions.txt" "tomcat_service.sh" "Timeline.docx" "stackoverflowQuestion.txt" "ssl_mongo_install.txt" "saved_stackoverflow.txt" "Project_install_steps.docx" "OurSTIGstatus.xlsx" "Oct102014.txt" "Oct102014-Timeline.xlsx" "mongod_initd.sh" "mongo_service_script.txt" "mongo_service_script.sh" "Mongo2.6_release_notes.docx" "ircop/" "GMU_confirmation.tiff" "clojure/" "AnnualSecurityTraining-2014.docx" "../" "./")
+
+ ("/Users/jlents/emacs.bak/" (21775 62370 0 0) ".emacs.d.bak/" ".emacs.bak" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

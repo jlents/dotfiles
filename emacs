@@ -84,10 +84,10 @@
 (sml/setup)
 
 ;; General Auto-Complete
-(require 'auto-complete-config)
-(setq ac-delay 0.0)
-(setq ac-quick-help-delay 0.5)
-(ac-config-default)
+;(require 'auto-complete-config)
+;(setq ac-delay 0.0)
+;(setq ac-quick-help-delay 0.5)
+;(ac-config-default)
 
 ;; Note to self: Learn more about ido features/options
 (require 'ido)

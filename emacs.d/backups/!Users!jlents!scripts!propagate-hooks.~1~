@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+# This is a script that will find every directory, in your projects directory (~/projects for me), that contains a .git directory & propagate git hooks to them.
+
+# It's useful because there is no way to keep git hooks in a directory if you have to blow the directory away, which happens from time to time.

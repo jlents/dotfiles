@@ -1,0 +1,26 @@
+#!/bin/sh
+
+##   LIST OF DIRECTORIES OMITTED FOR TRAILING WHITESPACE INSPECTION
+#    anything in .git directory
+#    anything in target directory
+#    anything in bower_components
+#    anything in an img directory
+#    anything in an npm directory
+#    anything in a logs direcotory
+
+##   LIST OF FILE EXTENSIONS OMITTED FOR TRAILING WHITESPACE INSPECTION
+#    .pptx
+#    .png
+#    .jpg
+#    .gif
+#    .pdf
+#    .sh
+
+for FILE in `find . -type f -not -path "./.git/*" -not -path "./target/*" -not -path "*/bower_components/*" -not -path "*/img/*" -not -path "*/npm/*" -not -path "*/logs/*" -not -path "*.pptx" -not -path "*.png" -not -path "*.jpg" -not -path "*.gif" -not -path "*.pdf" -not -path "*.sh" -exec egrep -l " +$" {} \;`
+do
+    perl -p -i -e 's/\s+$/\n/' $FILE
+    git add "$FILE"
+done
+
+# Remove any .DS_Store file, because who freaking wants to see 'em 
+find . -name "*.DS_Store" -type f -delete

@@ -1,0 +1,224 @@
+;;;; Functions which extract data from different formats.  For each known
+;;;; datasource type (e.g. delimited text file, Access DB, etc.), the code to
+;;;; handle its extraction will be here.
+
+(ns a2t-clj.etl.extraction
+  (:require [a2t-clj.config :as config]
+            [a2t-clj.data :as data]
+            [a2t-clj.db :as db]
+            [a2t-clj.utility :as util]
+            [a2t-clj.etl.data :as etl-data]
+            [camel-snake-kebab.core :as csk]
+            [clj-time.core :as time]
+            [clojure.java.io :as io]))
+
+(defn gen-keys
+  "Generate n key names." [n]
+  {:pre [(>= n 0)]}
+  (map #(keyword (str "field-" %)) (map inc (range n))))
+
+(defn create-key
+  "Given an arbitrary string, create a kebab-case key from it." [s]
+  (keyword (csk/->kebab-case (clojure.string/lower-case (clojure.string/trim (clojure.string/replace s #"/" " "))))))
+
+(defn validate-parsed-data
+  "Run generic format validation against parsed data to ensure the user is
+  alerted to a scenario where data may be malformed." [data header]
+  (let [keys (if header
+               (map create-key (first data))
+               (gen-keys (count (first data))))
+        data (if header (rest data) data)]
+    ;; Check that there's an equal number of fields in each row.
+    (when-not (apply = (conj (map count data) (count keys)))
+      (throw (Exception. "Inconsistent number of fields across rows in
+         input data.")))
+    ;; Check for a key name collision.
+    (when-not (= (count keys) (count (set keys)))
+      (throw (Exception. "Name collision on column headers.  Check the
+         header row and ensure no names match.")))
+    (vec (for [row data] (zipmap keys row)))))
+
+;; TODO: check performance with larger datasets. Might want to move to
+;; StringBuilder.
+(defn delim-str-quote->map
+  "Parse records with respect to quotes. This is best for data
+  sources that have free-text fields."
+  [data & {:keys [header] :or {:header false}}]
+  (let [data (loop [records [] record [] field "" quote? false data
+                    (clojure.string/replace data "," ", ")]
+               (let [c (str (first data))]
+                 (cond
+                   (= c "")           records
+                   (and (= c "\n")
+                        (not quote?)) (recur (conj records (conj record field)) []
+                                             "" false (subs data 1))
+                   (and (= c ",")
+                        (not quote?)) (recur records (conj record field) "" quote? (subs data 1))
+                   (= c "\"")         (recur records record (str field c) (not quote?) (subs data 1))
+                   (= c "\r")         (recur records record field quote? (subs data 1))
+                   :else              (recur records record (str field c) quote? (subs data 1)))))
+        data  (for [v data] (for [s v] (->> s
+                                            (clojure.string/trim)
+                                            (#(if (and (= "\"" (str (first %))) (= "\"" (str (last %))))
+                                                (subs % 1 (- (count %) 1)) %)))))]
+    (validate-parsed-data data header)))
+
+(defn delim-str->map
+  "Extract a delimited string (e.g. slurped from a file) into a map,
+  auto-creating keys.  Takes an optional :header key, which will create keys
+  using the first line of the file."
+  [data delim-re & {:keys [header] :or {:header false}}]
+  (let [data   (->> data
+                    (#(clojure.string/replace % "\return" ""))
+                    ;; Ensure all fields at least have a blank str.
+                    (#(clojure.string/replace % "," ", "))
+                    (#(clojure.string/replace % #"\t" "\t "))
+                    (#(clojure.string/replace % "\r" ""))
+                    (#(clojure.string/split % #"\n"))
+                    (map #(clojure.string/split % delim-re))
+                    (#(for [v %] (for [s v] (clojure.string/trim s)))))]
+    (validate-parsed-data data header)))
+
+(defn parse-codec
+  "Parses a single record using the codec."
+  [record codec]
+  (cond
+   (seq codec) (let [field (first (first codec))
+                     length (second (first codec))
+                     value (apply str (take length record)) ]
+                 (into {field value} (parse-codec (drop length record) (rest codec))))
+   :else nil))
+
+(defn codec-str->map
+  "Extract a codec-encrypted string into a map.
+   'data' represents the string to be parse.
+   'codec' represents an ordered list of tuples containing the field name and length.
+   example:
+      data = 'HelloWorld\nCountHands'
+      codec = [[:a 5] [:b 5]]
+      ==> [{:a 'Hello' :b 'World'} {:a 'Count' :b 'Hands'}]"
+  [data codec]
+  (->> data
+       (#(clojure.string/replace % "\return" ""))
+       (#(clojure.string/replace % "\r" ""))
+       (#(clojure.string/split % #"\n"))
+       (map #(parse-codec % codec))))
+
+(defn- get-datasource-tuples
+  "Returns string tuples containing the pairing of the top-level directories in
+  config/datasource-directory and their top-level children directories.
+  Example:
+  /
+    2015-01-10/
+      MFORCE/
+        some-file.txt
+      PROBE/
+  ==> [\"2015-01-10\" \"MFORCE\"] [\"2015-01-10\" \"PROBE\"]" []
+  (->> (clojure.java.io/file config/datasource-directory)
+       (file-seq)
+       (remove #(or (not (.isDirectory %)) 
+                    (= config/datasource-directory (str (.getPath %) "/"))))
+       (map #(clojure.string/replace (.getPath %) config/datasource-directory ""))
+       (map #(clojure.string/split % #"/"))
+       (filter #(= 2 (count %)))))
+
+(def next-etl-instance-id nil)
+
+(defn create-etl-instance
+  "Create an etl-instance map, presumably to be saved to the database."
+  ([ds user]
+   (-> ds ;; Add :date :etlSource-id :status :last-modified :last-modified-by.
+       (assoc :_id (or next-etl-instance-id (org.bson.types.ObjectId.))
+              :date (:date ds)
+              :etlSource-id (:etlSource-id ds)
+              :status :new
+              :last-modified (time/now)
+              :last-modified-by (:username user))
+       ;; Remove :datasource because it is already in etl-source as :name
+       (dissoc :datasource))))
+
+(defn detect-datasources
+  "Returns a set of maps representing all the known datasources." [user]
+  (let [sources (group-by :name (db/get-maps "etl-source"))
+        ;; Get ALL filesystem datasources.  Note: these
+        ;; directories/files will accumulate, since they are not
+        ;; archived somewhere else.
+        fs-ds (set (map #(identity {:date (first %)
+                                    :etlSource-id (:_id (first (get sources 
+                                                                    (second %))))})
+                        (get-datasource-tuples)))
+        ;; Get CORRESPONDING (same :date/:datasource) mongo
+        ;; datasources that are NOT rejected or ingested.
+        get-fs-unfinished-ds (fn [ds]
+                               (set (db/get-maps "etl-instance"
+                                     {'$or (map #(assoc % :status
+                                                        {'$nin [:rejected 
+                                                                :ingested]})
+                                                ds)})))
+        ;; Get ANY mongo datasources that are rejected or ingested.
+        finished-ds (set (db/get-maps
+                          "etl-instance" {:status {'$in [:rejected :ingested]}}))
+        ;; Convert to set (:date & :datasource, not :status).
+        ->set (fn [src] (set (map #(select-keys % [:date :etlSource-id]) src)))
+        ;; Return filesystem datasources that are not in mongo already.
+        new-fs-ds (clojure.set/difference
+                   fs-ds (->set finished-ds) (->set (get-fs-unfinished-ds fs-ds)))]
+    ;; add :new fs datasources to etl-instances
+    (when (not (empty? new-fs-ds))
+      (->> new-fs-ds
+           ;; Add additional etl-instance fields, like user, date, etc.
+           (map #(create-etl-instance % user))
+           (vec)
+           (db/put-maps "etl-instance")))
+    ;; return all the datasources from etl-instances
+    (db/get-maps "etl-instance")))
+
+;;; Datasource-specific extraction functions.
+
+(defmulti extract-datasource
+  "Multimethod for loading the datasource from the filesystem and
+  loading it into the database."
+  (fn [ds date] ds))
+
+(defmethod extract-datasource "TESTFORCE" [ds date]
+  (->> (slurp (str config/datasource-directory "/"
+                   date "/TESTFORCE/testforce.csv"))
+       (#(delim-str->map % #"," :header true))
+       (db/put-etl-data (str date "-" ds))))
+
+(defmethod extract-datasource "MFORCE" [ds date]
+  (let [data (-> (slurp (str config/datasource-directory "/"
+                  date "/MFORCE/mforce.txt"))
+                 (codec-str->map etl-data/mforce-codec))
+        coll (str date "-" ds)]
+    (db/put-etl-data coll data)))
+
+(def probe-resource-fields
+  [:uic :osdpe :ape :mdep :rc :ric :roc :appn :spc :year-1 :year-2 :year-3
+   :year-4 :year-5 :year-6 :year-7 :year-8 :year-9 :cwoc :ctc :bo :sfy])
+
+(defmethod extract-datasource "PROBE" [ds date]
+  (->> (slurp (str config/datasource-directory "/"
+                   date "/PROBE/current-resources.txt"))
+       (#(delim-str->map % #"\t" :header true))
+       (#(for [m %] (select-keys m probe-resource-fields)))
+       (vec)
+       (db/put-etl-data (str date "-" ds))))
+
+(defmethod extract-datasource "USRCOMMENTS" [ds date]
+  (->> (slurp (str config/datasource-directory "/"
+                   date (str "/" ds "/usrcomments.csv")))
+       (#(delim-str-quote->map % :header true))
+<<<<<<< HEAD
+       (db/put-etl-data (str date "-" ds))))
+=======
+       (db/put-etl-data (str date "-" ds)))
+  (build-query-builder-data ds date))
+
+(defmethod extract-datasource "USROVERALL" [ds date]
+  (->> (slurp (str config/datasource-directory "/"
+                   date (str "/" ds "/usroverall.txt")))
+       (#(delim-str->map % #"\t" :header true))
+       (db/put-etl-data (str date "-" ds)))
+  (build-query-builder-data ds date))
+>>>>>>> implementing usroverall.

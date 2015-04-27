@@ -1,0 +1,3 @@
+#!/bin/bash
+
+find . -type f -not -path "./.git/*" -not -path "./target/*" -not -path "*/bower_components/*" -not -path "*/resources/ingest-files/*" -not -path "*/resources/certs/*" -not -path "*/img/*" -not -path "*/npm/*" -name '*.*' | sed 's|.*\.||' | sort -u

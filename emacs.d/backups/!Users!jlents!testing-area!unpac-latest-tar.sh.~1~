@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# KATO=/systems/systes.sct
+# CODE_DROPS=${KATO}/code-drops
+# TARFILES=${CODE_DROPS}/tarfiles
+# MEDIA=/media
+# REPOS=${KATO}/a2t-repositories
+
+KATO=~/testing-area
+CODE_DROPS=${KATO}/code-drops
+TARFILES=${CODE_DROPS}/tarfiles
+MEDIA=${KATO}/media
+REPOS=${KATO}/a2t-repositories
+
+
+# be able to find the directory/file in /media
+# Locate the CD in the media area
+dirs=find $MEDIA -type d
+
+
+echo $dirs
+
+# copy that file to TARFILES
+
+# Get names of all files in a directory (tarfiles)
+# Be able to parse the filenames to remove the .tar.gz portion from string
+# Be able to compare the strings and sort according to the date
+
+
+#untar the 'freshest' tarfile to CODE_DROPS
+
+# for each .bundle file in 'isodate'd file
+#   remove the current directory from 
+#     git clone bare from isodate'd
+
+# TODO: Build an array of all projects from latest DROp
+
+
+# for each user
+#    for each project in the array of latest projects
+#    if git status on that project is up to date, git pull --rebase
+
+
+
+
+

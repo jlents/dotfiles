@@ -1,0 +1,126 @@
+#!/bin/bash
+
+# KATO=/systems/systes.sct
+# CODE_DROPS=${KATO}/code-drops
+# TARFILES=${CODE_DROPS}/tarfiles
+# MEDIA=/media
+# REPOS=${KATO}/a2t-repositories
+
+KATO=~/testing-area
+CODE_DROPS=${KATO}/code-drops
+TARFILES=${CODE_DROPS}/tarfiles
+MEDIA=${KATO}/media
+A2T_REPOSITORIES=${KATO}/a2t-repositories
+ROLE=jlents
+GROUP=staff
+
+#### Discover the media directory
+
+# Function that fills MEDIA_DIR array with all directories in $MEDIA
+function discover_media_directory {
+  MEDIA_DIR=()
+  for FILE in $MEDIA/*; do
+    [[ -d $FILE ]] && MEDIA_DIR+=("$FILE")
+  done
+
+  # If DIRS is more than one, then we don't know what directory is the CD containing our bundles
+  if [ ${#MEDIA_DIR[@]} -ne 1 ]
+  then
+    echo "Too many directories in the media area, unable to auto-retrieve the tar file"
+    exit 0
+  fi
+}
+
+# If arg passed, it will be used as the source dir, otherwise will attempt to discover it.
+if [ $# -eq 1 ]
+then
+    MEDIA_DIR+=("${MEDIA}/${1}")
+elif [ $# -eq 0 ]
+then
+    discover_media_directory
+else
+    echo "Too many arguments provided... exiting..."
+    exit 0
+fi
+
+# This is the SOURCE directory to retrieve the .tar.gz file from.
+SOURCE_DIR=${MEDIA_DIR[0]}
+
+if ! [ -d $SOURCE_DIR ]
+then
+    echo "The following location: ${SOURCE_DIR}"
+    echo "Is not a directory. Must be a directory so I can get the .tar.gzgz file from it. exiting...."
+    exit 0
+fi
+
+
+#### Discover the tarfile located in the SOURCE_DIR
+for FILE in $SOURCE_DIR/*; do
+    [[ -f $FILE ]] && [[ "${FILE}" =~ .*.tar.gz ]] && SOURCE=("$FILE")
+done
+
+if [[ -z "$SOURCE" ]] 
+then
+    echo "Was expecting a .tar.gz file to be in ${SOURCE_DIR}, but there wasn't... exiting..."
+    exit 0
+fi
+
+
+# Copying the tar file to the TARFILES directory
+cp $SOURCE $TARFILES/
+
+regex="[^/]+$"
+[[ "${SOURCE}" =~ $regex ]]
+SOURCE=$TARFILES/"${BASH_REMATCH[0]}"
+
+
+
+cd $CODE_DROPS
+#### Discover the 'active' directory in CODE_DROPS that should be deleted.
+regex="[0-9]{4}.*"
+for FILE in $CODE_DROPS/*; do
+    if [[ -d $FILE ]] && [[ "${FILE}" =~ $regex ]]
+    then
+        rm -rf $FILE
+    fi
+done
+
+# Untar the source file into CODE_DROPS
+tar -zxvf $SOURCE
+
+# Setting SOURCE to be equal to the untar'd directory in CODE_DROPS
+for FILE in $CODE_DROPS/*; do
+    [[ -d $FILE ]] && [[ "${FILE}" =~ $regex ]] && SOURCE=("$FILE")
+done
+
+# Grab all .bundle files out of $SOURCE
+BUNDLES=()
+for FILE in $SOURCE/*; do
+    [[ "${FILE}" =~ .bundle ]] && BUNDLES+=("$FILE")
+done
+
+# Get just the project names from the .bundle file (project.bundle without the '.bundle')
+just_bundle="[^/]+$"
+PROJECTS=()
+for bundle in "${BUNDLES[@]}"; do
+
+    [[ "${bundle}" =~ $just_bundle ]] && PROJECTS+=(`echo $BASH_REMATCH[0] | cut -f1 -d'.'`)
+done
+
+cd $A2T_REPOSITORIES
+
+# Remove the current bare repos
+for proj in "${PROJECTS[@]}"; do
+    rm -rf $proj
+done
+
+# Git clone --bare
+for bundle in "${BUNDLES[@]}"; do
+    git clone --bare $bundle
+done
+
+
+chmod -R 750 $SOURCE
+chown -R $ROLE:$GROUP $SOURCE
+chmod -R 750 $A2T_REPOSITORIES
+chown -R $ROLE:$GROUP $A2T_REPOSITORIES

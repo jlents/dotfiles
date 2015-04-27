@@ -1,0 +1,23 @@
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+
+;; Better JS mode
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+;; Supposedly offers better auto-completion, but requires a browser to be connected to Emacs
+(setq ac-js2-evaluate-calls t)
+
+;; Add JS libraries to get auto-completion from a specific JS library/framework
+;(add-to-list 'ac-js2-external-libraries "path/to/lib/angular.js")
+
+;; Can be set from 0-3, higher number means more highlighting
+(setq js2-highlight-level 3)
+
+;; JS Paredit Options
+(define-key js-mode-map "{" 'paredit-open-curly)
+(define-key js-mode-map "}" 'paredit-close-curly-and-newline)
+
+
+;; Adding Web-Beautify.el, which is the Emacs for npm's js-beautify
+;(add-to-list 'load-path "~/.emacs.d/web-beautify.el")
+
