@@ -177,3 +177,4 @@
     (mapc 'kill-buffer
           (delq (current-buffer)
                 (remove-if-not 'buffer-file-name (buffer-list)))))
+(put 'upcase-region 'disabled nil)
